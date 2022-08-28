@@ -3,7 +3,7 @@ Trabalho Prático - Prática em Desenvolvimento de Software
 
 # Sistema de locadora online (serviço de streaming)
 
-## Sobre o Sistema
+## Sobre o sistema
 
 ## Features
 -
@@ -16,7 +16,7 @@ Trabalho Prático - Prática em Desenvolvimento de Software
 - Database: PostgreSQL
 
 ## Grupo:
-- Denilson: Front-End
+- Denilson Santos: Front-End
 - Gabriel Cerqueira: Full Stack
 - Gabriel Juarez: Back-End
-- Giovanni Gontijo: Full Stack
+- Giovanni Braga: Full Stack
