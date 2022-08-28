@@ -10,6 +10,7 @@ Trabalho Prático - Prática em Desenvolvimento de Software
 - Carrinho compartilhado entre lojas
 - Fluxo de checkout compartilhado
 - Se tornar um parceiro e gerenciar sua loja virtual
+- Criação de coleções de produtos (Sendo um parceiro)
 
 ### Tecnologias
 - Front-end: React
