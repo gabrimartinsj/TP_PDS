@@ -7,6 +7,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { StatusBar, Platform, UIManager, LogBox } from "react-native";
 import theme from "./src/styles/theme";
 import AppNavigation from "./src/navigation/AppNavigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 if (
   Platform.OS === "android" &&
@@ -21,7 +22,9 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <PaperProvider theme={theme}>
           <StatusBar barStyle="default" />
-          <AppNavigation />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <AppNavigation />
+          </GestureHandlerRootView>
         </PaperProvider>
       </PersistGate>
     </Provider>

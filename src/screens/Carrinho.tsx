@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import ScreenContainer from "../components/ScreenContainer";
 
 type Props = {};
 
 const Carrinho = (props: Props) => {
   return (
-    <View>
+    <ScreenContainer>
       <Text>Carrinho</Text>
-    </View>
+    </ScreenContainer>
   );
 };
 
