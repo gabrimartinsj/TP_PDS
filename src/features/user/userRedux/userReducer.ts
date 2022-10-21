@@ -11,7 +11,11 @@ type userTypes = {
 const userInitialState: userTypes = {
   isFetching: false,
   error: null,
-  user: null,
+  user: {
+    id: 0,
+    nome: "Renato Diniz de Souza",
+    email: "renatodiniz@gmail.com",
+  },
 };
 
 const userReducer = (state = userInitialState, action: AnyAction) => {
