@@ -1,7 +1,11 @@
+
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { Compra } from "../@types/entities/Compra";
 
-type Props = {};
+type Props = {
+  compra: Compra
+};
 
 const Carrinho = (props: Props) => {
   return (
