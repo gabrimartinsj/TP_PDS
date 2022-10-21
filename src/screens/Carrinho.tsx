@@ -3,9 +3,7 @@ import React from "react";
 import { Compra } from "../@types/entities/Compra";
 import ScreenContainer from "../components/ScreenContainer";
 
-type Props = {
-  compra: Compra;
-};
+type Props = {};
 
 const Carrinho = (props: Props) => {
   return (
