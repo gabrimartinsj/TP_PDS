@@ -6,6 +6,7 @@ export type MButtonProps = {
   mode?: "text" | "outlined" | "contained";
   onPress: () => void;
   style?: object;
+  contentStyle?: object;
   icon?: string;
   disabled?: boolean;
 };
@@ -15,6 +16,7 @@ const CustomButton: React.FC<MButtonProps> = ({
   onPress,
   mode = "contained",
   style,
+  contentStyle,
   icon,
   disabled = false,
 }) => {
@@ -25,6 +27,7 @@ const CustomButton: React.FC<MButtonProps> = ({
       style={[style, { borderRadius: 16 }]}
       icon={icon && icon}
       disabled={disabled}
+      contentStyle={contentStyle}
     >
       {title}
     </Button>

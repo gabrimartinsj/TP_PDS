@@ -15,7 +15,7 @@ type Props = {};
 const UserMenu = (props: Props) => {
   const { colors } = useTheme() as CustomTheme;
 
-  const user = useSelector((state: RootState) => state.user.user) as Usuario;
+  /*const user = useSelector((state: RootState) => state.user.user) as Usuario;
 
   const dispatch = useDispatch();
   
@@ -27,7 +27,13 @@ const UserMenu = (props: Props) => {
         email: "renatodiniz@gmail.com",
       })
     );
-  }, []);
+  }, []);*/
+
+  const user = {
+    id: 0,
+    nome: "Renato Diniz de Souza",
+    email: "renatodiniz@gmail.com",
+  };
   
 
   const listaMenu: MenuItemListType[] = [
@@ -60,7 +66,7 @@ const UserMenu = (props: Props) => {
   return (
     <ScreenContainer>
       <View style={sytles.userInfo}>
-        <MAvatarImage imageSize={48} imageUrl={"https://image-placeholder.com/images/actual-size/75x75.png"}/>
+        <MAvatarImage imageSize={48} imageUrl={"https://picsum.photos/200/300?random="}/>
         
         <View>
           <Text style={{color: colors.primary, fontSize: 28, paddingTop: 8}}>{user.nome}</Text>
