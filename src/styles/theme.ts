@@ -38,7 +38,7 @@ const theme: CustomTheme = {
     background: "#ffff",
     backgroundItem: "#fff",
     surface: "#92d9f3",
-    text: "#73777B",
+    text: "#181818",
     primary1: "#662d91",
     light1: "#d399fe",
     light2: "#995cc8",
