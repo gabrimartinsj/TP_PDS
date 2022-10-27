@@ -5,7 +5,7 @@ import ScrollViewContainer from "../components/ScrollViewContainer";
 import MProduto from "../components/MProduto";
 import { ProdutoCarrinho } from "../components/MProduto";
 import MDescValue from "../components/MDescValue";
-import MButton from "../components/MButton";
+import MCustomButton from "../components/MCustomButton";
 
 
 type Props = {};
@@ -114,7 +114,7 @@ const Carrinho = (props: Props) => {
         <MDescValue description={"Serviços:"} value={toMoneyPattern(calculateServices())} fontSize={16} color={"gray"}></MDescValue>
         <MDescValue description={"Descontos:"} value={"-" + toMoneyPattern(descontoTotal)} fontSize={16} color={"gray"}></MDescValue>
         <MDescValue description={"Valor Total:"} value={toMoneyPattern(totalComDesconto)} fontSize={20} color={"black"}></MDescValue>
-        <MButton style={{marginTop: 40}} title="Finalizar Compra" onPress={() => console.log("Compra Finalizada")}></MButton>
+        <MCustomButton text={"Finalizar compra"} style={styles.finalizarCompraButton} textStyle={styles.finalizarCompraButtonText} onPress={() => console.log("Compra Finalizada")}/>
       </View>
     </ScrollViewContainer>
   );
@@ -128,5 +128,17 @@ const styles = StyleSheet.create({
     borderTopColor: "gray",
     marginTop: 80,
     paddingBottom: 50
+  },
+  finalizarCompraButton: {
+    backgroundColor: "black",
+    borderRadius: 8,
+    height: 40,
+    margin: 30,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  finalizarCompraButtonText: {
+    color: "white",
+    fontSize: 20
   }
 });

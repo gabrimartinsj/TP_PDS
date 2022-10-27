@@ -1,10 +1,11 @@
 
 import { useState } from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { CustomTheme } from "../styles/theme";
 import { useTheme } from "react-native-paper";
-import MButton from "../components/MButton";
 import MImage from "./MImage";
+import MCustomButton from "./MCustomButton";
+
 
 export type ProdutoCarrinho = {
   imagem: string,
@@ -54,7 +55,7 @@ export default function MProduto(props: MProdutoProps) {
 
   return (
     <View style={styles.container}>
-      <MImage image={props.produto.imagem} height={200}></MImage>
+      <MImage image={props.produto.imagem} width={120} style={{borderRadius: 6}}></MImage>
       <View style={styles.imageInfoText}>
         <Text style={{color: colors.text, fontSize: 16}}>{props.produto.nome}</Text>
         <View style={{flexDirection: "row", alignItems: "flex-end", paddingTop: 10}}>
@@ -65,11 +66,24 @@ export default function MProduto(props: MProdutoProps) {
         <View style={styles.quantityView}>
           <View style={styles.occupySpace}></View>
           <View style={styles.buttonsContainer}>
-            <MButton style={styles.incrementButton} title="+" onPress={incrementProductQuantity}/>
+            <MCustomButton
+              text={"+"}
+              style={[styles.changeQuantityButton, styles.incrementButton]}
+              textStyle={[styles.changeQuantityButtonsText, styles.incrementButtonText]}
+              onPress={incrementProductQuantity}/>
+
             <View style={styles.quantityContainer}>
               <Text style={{fontSize: 16}}>{productQuantity}</Text>
             </View>
-            <MButton style={styles.decrementButton} mode="text" disabled={productQuantity == 0} title="-" onPress={decrementProductQuantity}/>
+
+            <MCustomButton
+              text={"-"} 
+              style={[styles.changeQuantityButton, styles.decrementButton]}
+              textStyle={styles.changeQuantityButtonsText}
+              disabledStyle={[styles.changeQuantityButton, styles.disabledButton]}
+              textDisabledStyle={[styles.changeQuantityButtonsText, styles.disabledText]}
+              disabled={productQuantity == 0}
+              onPress={decrementProductQuantity}/>
           </View>
         </View>
       </View>
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   imageInfoText: {
-    padding: 3,
+    paddingLeft: 8,
     flex: 1,
   },
   occupySpace: {
@@ -93,16 +107,36 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonsContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  changeQuantityButton: {
+    width: 34,
+    height: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    fontWeight: "bold"
+  },
+  changeQuantityButtonsText: {
+    fontWeight: "bold"
   },
   incrementButton: {
-    marginLeft: 10,
-    height: 30
+    backgroundColor: "black"
+  },
+  incrementButtonText: {
+    color: "white"
   },
   decrementButton: {
-    borderColor: "black",
-    borderWidth: 1,
-    height: 30
+    borderWidth: 2,
+    borderColor: "black"
+  },
+  disabledButton: {
+    borderWidth: 2,
+    borderColor: "gray"
+  },
+  disabledText: {
+    color: "gray"
   },
   quantityContainer: {
     alignItems: "center",
