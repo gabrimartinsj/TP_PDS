@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import { Loja } from "../../../@types/entities/Loja";
-
+import LojaActionTypes from "../lojaActions/lojaActionTypes";
+         
 type lojaTypes = {
   isFetching: boolean;
   error: string | null;

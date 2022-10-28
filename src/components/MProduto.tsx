@@ -10,13 +10,14 @@ import {
   removeItem,
 } from "../features/carrinho/carrinhoActions/carrinhoActions";
 
-export type ProdutoCarrinho = {
+export type ProdutoView = {
   imagem: string;
   nome: string;
   preco: number;
   desconto: number;
   quantidade: number;
-  onQuantityChange: Function;
+  onIncrement: Function;
+  onDecrement: Function;
 };
 
 type ImageDimensions = {
@@ -25,7 +26,7 @@ type ImageDimensions = {
 };
 
 type MProdutoProps = {
-  produto: ProdutoCarrinho;
+  produto: ProdutoView;
 };
 
 function calculateDiscount(price: number, discount: number): number {
@@ -46,13 +47,13 @@ export default function MProduto(props: MProdutoProps) {
   ); // Tem Que fazer algo aqui quando alterar a quantidade
 
   function incrementProductQuantity() {
-    props.produto.onQuantityChange(productQuantity + 1);
+    props.produto.onIncrement();
     setProductQuantity(productQuantity + 1);
   }
 
   function decrementProductQuantity() {
     if (productQuantity == 0) return;
-    props.produto.onQuantityChange(productQuantity - 1);
+    props.produto.onDecrement();
     setProductQuantity(productQuantity - 1);
   }
 

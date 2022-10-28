@@ -6,7 +6,7 @@ export const addItem = (cartItem: CartItem) => ({
   payload: cartItem,
 });
 
-export const removeItem = (id: number | string) => ({
+export const removeItem = (id: number) => ({
   type: CarrinhoActionTypes.REMOVE_ITEM,
   payload: id,
 });
