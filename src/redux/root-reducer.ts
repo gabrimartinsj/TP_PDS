@@ -5,6 +5,8 @@ import store from "./store";
 
 import userReducer from "../features/user/userRedux/userReducer";
 import marketplaceReducer from "../features/marketplace/marketplaceRedux/marketplaceReducer";
+import carrinhoReducer from "../features/carrinho/carrinhoRedux/carrinhoRedux";
+import lojaReducer from "../features/loja/lojaRedux/lojaReducer";
 
 const persistConfig = {
   key: "root",
@@ -14,6 +16,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   marketplace: marketplaceReducer,
+  carrinho: carrinhoReducer,
+  loja: lojaReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
