@@ -117,7 +117,7 @@ const Carrinho = (props: Props) => {
       <View style={styles.bottom}>
         <MDescValue
           description={"Total dos Produtos:"}
-          value={toMoneyPattern(carrinho.total)}
+          value={toMoneyPattern(carrinho.totalBruto)}
           fontSize={16}
           color={"gray"}
         ></MDescValue>

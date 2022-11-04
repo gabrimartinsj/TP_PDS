@@ -3,6 +3,8 @@ import { View, Text } from "react-native";
 import Carrinho from "../../screens/Carrinho";
 import Home from "../../screens/Home";
 import UserMenu from "../../screens/UserMenu";
+import HomeLoja from "../../screens/HomeLoja";
+import HomeLojaColecao from "../../screens/HomeLojaColecao";
 const Tab = createBottomTabNavigator();
 
 export default function HomeNavigation() {
