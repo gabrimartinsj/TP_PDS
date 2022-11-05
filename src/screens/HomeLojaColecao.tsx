@@ -61,7 +61,7 @@ export default function HomeLojaColecao() {
         preco: 53.9,
         desconto: 10,
         image: "https://picsum.photos/200/330?random=6"
-      },
+      }
     ]
   };
 

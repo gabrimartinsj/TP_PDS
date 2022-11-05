@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Compra } from "../@types/entities/Compra";
 import ScrollViewContainer from "../components/ScrollViewContainer";
 import MProduto from "../components/MProduto";
-import { ProdutoView } from "../components/MProduto";
 import MDescValue from "../components/MDescValue";
 import MCustomButton from "../components/MCustomButton";
 import { useDispatch, useSelector } from "react-redux";

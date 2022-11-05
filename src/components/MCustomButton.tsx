@@ -20,7 +20,7 @@ export default function MCustomButton(props: MCustomButtonProps) {
 
   return (
     <Pressable style={(props.disabled ?? false) ? (props.disabledStyle ?? props.style) : props.style} onPress={callOnPressIfEnabled}>
-      <Text style={(props.disabled ?? false) ? (props.textDisabledStyle ?? props.textStyle) : props.textStyle}>{props.text}</Text>
+      <Text selectable={false} style={(props.disabled ?? false) ? (props.textDisabledStyle ?? props.textStyle) : props.textStyle}>{props.text}</Text>
     </Pressable>
   );
 }

@@ -1,16 +1,14 @@
+
 import { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { CustomTheme } from "../styles/theme";
 import { useTheme } from "react-native-paper";
 import MImage from "./MImage";
 import MCustomButton from "./MCustomButton";
-import { useDispatch } from "react-redux";
-import {
-  addItem,
-  removeItem,
-} from "../features/carrinho/carrinhoActions/carrinhoActions";
+import MProdutoInfo from "./MProductInfo";
 
-export type ProdutoView = {
+
+type ProdutoView = {
   imagem: string;
   nome: string;
   preco: number;
@@ -20,31 +18,17 @@ export type ProdutoView = {
   onDecrement: Function;
 };
 
-type ImageDimensions = {
-  width: number;
-  height: number;
-};
-
 type MProdutoProps = {
   produto: ProdutoView;
 };
 
-function calculateDiscount(price: number, discount: number): number {
-  return (price * (100 - Math.round(discount))) / 100;
-}
-
-function toMoneyPattern(num: number): string {
-  return "R$" + num.toFixed(2).replace(".", ",");
-}
-
 export default function MProduto(props: MProdutoProps) {
-  const { colors } = useTheme() as CustomTheme;
 
-  const dispatch = useDispatch();
+  const { colors } = useTheme() as CustomTheme;
 
   const [productQuantity, setProductQuantity] = useState(
     props.produto.quantidade
-  ); // Tem Que fazer algo aqui quando alterar a quantidade
+  );
 
   function incrementProductQuantity() {
     props.produto.onIncrement();
@@ -65,39 +49,11 @@ export default function MProduto(props: MProdutoProps) {
         style={{ borderRadius: 6 }}
       ></MImage>
       <View style={styles.imageInfoText}>
-        <Text style={{ color: colors.text, fontSize: 16 }}>
-          {props.produto.nome}
-        </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "flex-end",
-            paddingTop: 10,
-          }}
-        >
-          <Text
-            style={{ color: colors.primary, fontSize: 16, fontWeight: "bold" }}
-          >
-            {" "}
-            {toMoneyPattern(
-              calculateDiscount(props.produto.preco, props.produto.desconto)
-            )}{" "}
-          </Text>
-          <Text
-            style={{
-              color: colors.disabled,
-              fontSize: 12,
-              textDecorationLine: "line-through",
-            }}
-          >
-            {" "}
-            {toMoneyPattern(props.produto.preco)}
-          </Text>
-          <Text style={{ color: "orange", fontSize: 12 }}>
-            {" "}
-            {Math.round(props.produto.desconto)}% OFF
-          </Text>
-        </View>
+        <MProdutoInfo
+          name={props.produto.nome}
+          price={props.produto.preco}
+          desconto={props.produto.desconto}
+        />
         <View style={styles.quantityView}>
           <View style={styles.occupySpace}></View>
           <View style={styles.buttonsContainer}>
