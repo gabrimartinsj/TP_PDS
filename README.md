@@ -38,6 +38,7 @@ O sistema será mais do que apenas uma plataforma para criação de uma loja vir
 - Desenvolvimento: Implementar biblioteca de componentes (Giovanni)
 - Desenvolvimento: Implementar o gerenciador de estados (Gabriel C.)
 - Desenvolvimento: Implementação do DB (Gabriel J.)
+- Desenvolvimento: Histórias de usuário (Todos)
 
 
 ### Histórias de usuário:
@@ -99,4 +100,4 @@ O sistema será mais do que apenas uma plataforma para criação de uma loja vir
 ### Sprint 2:
 - Projeto Arquitetural
 - Tarefas Técnicas
-- Desenvolvimento
+- Desenvolvimento 
