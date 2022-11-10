@@ -9,8 +9,32 @@ export const serverConfig: ServerConfigType = {
   },
 
   pathUseCases: {
-    marketplace: {},
-    user: {},
+    marketplace: {
+      getLojasStart: {
+        method: "get",
+        urlService: "/marketplace/lojas",
+      },
+    },
+    user: {
+      finalizarCompra: {
+        method: "post",
+        urlService: "/user/finalizarCompra",
+      },
+      recuperarCompras: {
+        method: "get",
+        urlService: "/user/recuperarCompras",
+      },
+      getInformacaoPessoal: {
+        method: "get",
+        urlService: "/user/finalizarCompra",
+      },
+    },
+    loja: {
+      getLojaStart: {
+        method: "get",
+        urlService: (id: number | string) => `/loja/${id}`,
+      },
+    },
   },
   proxy: "",
   desenv: {

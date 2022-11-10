@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   img: {
     width: 120,
     height: 120,
-    borderRadius: 10,
+    borderRadius: 5,
     //alignSelf: 'center',
   },
   cardInfo: {

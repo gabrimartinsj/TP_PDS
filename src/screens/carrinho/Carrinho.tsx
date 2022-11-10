@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Compra } from "../@types/entities/Compra";
-import ScrollViewContainer from "../components/ScrollViewContainer";
-import MProduto from "../components/MProduto";
-import MDescValue from "../components/MDescValue";
-import MCustomButton from "../components/MCustomButton";
+import { Compra } from "../../@types/entities/Compra";
+import ScrollViewContainer from "../../components/ScrollViewContainer";
+import MProduto from "../../components/MProduto";
+import MDescValue from "../../components/MDescValue";
+import MCustomButton from "../../components/MCustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/root-reducer";
-import { addItem, removeItem } from "../features/carrinho/carrinhoActions/carrinhoActions";
-
+import { RootState } from "../../redux/root-reducer";
+import {
+  addItem,
+  removeItem,
+} from "../../features/carrinho/carrinhoActions/carrinhoActions";
 
 type Props = {};
 
@@ -42,75 +44,79 @@ const Carrinho = (props: Props) => {
   */
 
   useEffect(() => {
-    if(carrinho.itens.length != 0)
-      return;
-    
+    if (carrinho.itens.length != 0) return;
+
     const items = [
       {
         image: "https://picsum.photos/200/300?random=",
         nome: "Calvin Clein Regular fit slim fit shirt",
         preco: 62.4,
         desconto: 20,
-        quantidade: 1
+        quantidade: 1,
       },
       {
         image: "https://picsum.photos/210/300?random=",
         nome: "Bota legal",
         preco: 80,
         desconto: 10,
-        quantidade: 2
+        quantidade: 2,
       },
       {
         image: "https://picsum.photos/220/300?random=",
         nome: "Boné Vermelho",
         preco: 30,
         desconto: 5,
-        quantidade: 1
+        quantidade: 1,
       },
       {
         image: "https://picsum.photos/200/330?random=",
         nome: "Honda Civic",
         preco: 80000,
         desconto: 3,
-        quantidade: 1
-      }
+        quantidade: 1,
+      },
     ];
-    
-    for(let i = 0; i < items.length; i++) {
-      dispatch(addItem({
-        id: i,
-        ... items[i]
-      }));
+
+    for (let i = 0; i < items.length; i++) {
+      dispatch(
+        addItem({
+          id: i,
+          ...items[i],
+        })
+      );
     }
   }, []);
-  
 
   function onIncrement(idx: number) {
-    return function() {
+    return function () {
       dispatch(addItem(carrinho.itens[idx]));
-    }
+    };
   }
 
   function onDecrement(idx: number) {
-    return function() {
+    return function () {
       dispatch(removeItem(carrinho.itens[idx].id));
-    }
+    };
   }
- 
 
   return (
     <ScrollViewContainer>
       <View>
         {carrinho.itens.map((produto, idx) => {
-          return <MProduto produto={{
-            imagem: produto.image,
-            nome: produto.nome,
-            preco: produto.preco,
-            desconto: produto.desconto,
-            quantidade: produto.quantidade,
-            onIncrement: onIncrement(idx),
-            onDecrement: onDecrement(idx)
-          }} key={idx} />;
+          return (
+            <MProduto
+              produto={{
+                imagem: produto.image,
+                nome: produto.nome,
+                preco: produto.preco,
+                desconto: produto.desconto,
+                quantidade: produto.quantidade,
+                onIncrement: onIncrement(idx),
+                onDecrement: onDecrement(idx),
+              }}
+              key={idx}
+            />
+          );
         })}
       </View>
       <View style={styles.bottom}>

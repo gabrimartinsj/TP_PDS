@@ -8,7 +8,7 @@ function MCarousel() {
   return (
     <View style={{ flex: 1 }}>
       <Carousel
-        autoPlayInterval={5000}
+        autoPlayInterval={2500}
         loop={true}
         width={width * 0.9}
         height={width / 2}
