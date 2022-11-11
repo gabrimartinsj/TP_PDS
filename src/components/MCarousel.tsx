@@ -11,7 +11,7 @@ function MCarousel() {
         autoPlayInterval={2500}
         loop={true}
         width={width * 0.9}
-        height={width / 2}
+        height={width / 2.5}
         autoPlay={true}
         data={[...new Array(6).keys()]}
         scrollAnimationDuration={500}
