@@ -1,0 +1,7 @@
+const ProdutoActionTypes = {
+  GET_PRODUTO_START: "GET_PRODUTO_START",
+  GET_PRODUTO_SUCCESS: "GET_PRODUTO_SUCCESS",
+  GET_PRODUTO_FAILURE: "GET_PRODUTO_FAILURE",
+};
+
+export default ProdutoActionTypes;
