@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View } from "react-native";
+import { Dimensions, Image, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Carousel from "react-native-reanimated-carousel";
 
@@ -27,7 +27,14 @@ function MCarousel() {
               justifyContent: "center",
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>{index}</Text>
+            <Image
+              style={{ flex: 1 }}
+              resizeMode="cover"
+              source={{
+                uri:
+                  "https://picsum.photos/200/330?random=" + `${Math.random()}`,
+              }}
+            />
           </View>
         )}
       />
