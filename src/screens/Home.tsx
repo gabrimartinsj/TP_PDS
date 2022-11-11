@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ScreenContainer from "../components/ScreenContainer";
 import MSearchBar from "../components/MSearchBar";
 import MCarousel from "../components/MCarousel";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import Box, { BoxType } from "../components/atoms/Box";
 import LongBox, { LongBoxType } from "../components/atoms/LongBox";
 import Card, { CardType } from "../components/atoms/Card";
@@ -11,6 +11,7 @@ import HorizontalList from "../components/compose/HorizontalList";
 import ScrollViewContainer from "../components/ScrollViewContainer";
 import { useTheme } from "react-native-paper";
 import { CustomTheme } from "../styles/theme";
+import { MarketPlaceStackParamList } from "../navigation/marketplaceNavigation/MarketPlaceNavigation";
 
 type Props = {};
 
@@ -27,7 +28,7 @@ export type Section = {
 const Home = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<MarketPlaceStackParamList>>();
 
   const HomeSections: Section[] = [
     {
@@ -36,19 +37,18 @@ const Home = (props: Props) => {
         {
           icon: "shopping-search",
           title: "Fashion",
-          action: () =>
-            navigation.navigate("TransferirNavigation", { screen: "Pix" }),
+          action: () => navigation.navigate("Home"),
         },
 
         {
           icon: "laptop",
           title: "Eletrônicos",
-          action: () => navigation.navigate("TransferirNavigation"),
+          action: () => navigation.navigate("Home"),
         },
         {
           icon: "fridge",
           title: "Furniture",
-          action: () => navigation.navigate("PagarNavigation"),
+          action: () => navigation.navigate("Home"),
         },
         {
           icon: "soy-sauce",
@@ -57,7 +57,7 @@ const Home = (props: Props) => {
         {
           icon: "fruit-grapes",
           title: "Food",
-          action: () => navigation.navigate("ComprovantesNavigation"),
+          action: () => navigation.navigate("Home"),
         },
       ],
     },
@@ -86,32 +86,7 @@ const Home = (props: Props) => {
         },
       ],
     },
-    {
-      title: "Categorias",
-      items: [
-        {
-          icon: "shield-sync-outline",
-          title: "Seguros e Assistências",
-          action: () => navigation.navigate("SegurosEAssistenciasNavigation"),
-        },
-        {
-          icon: "heart-circle-outline",
-          title: "Saúde e Bem Estar",
-        },
-        {
-          icon: "food-fork-drink",
-          title: "Bares e Restaurantes",
-        },
-        {
-          icon: "shield-sync-outline",
-          title: "Seguros e Assistências",
-        },
-        {
-          icon: "heart-circle-outline",
-          title: "Saúde e Bem Estar",
-        },
-      ],
-    },
+
     {
       title: "Lojas",
       items: [
@@ -121,6 +96,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -128,6 +104,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -135,6 +112,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -142,6 +120,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -149,6 +128,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -156,6 +136,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -163,6 +144,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -170,6 +152,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -177,6 +160,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
         {
           img:
@@ -184,6 +168,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
+          action: () => navigation.navigate("Loja"),
         },
       ],
     },
@@ -196,6 +181,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto A",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -203,6 +189,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto B",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -210,6 +197,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto A",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -217,6 +205,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto B",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -224,6 +213,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto A",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -231,6 +221,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto B",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -238,6 +229,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto A",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
         {
           img:
@@ -245,6 +237,7 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Produto B",
           price: "R$ 3x de 39,90",
+          action: () => navigation.navigate("Produto"),
         },
       ],
     },
@@ -273,7 +266,7 @@ const Home = (props: Props) => {
       <View>
         <View style={styles.sectionListContainer}>
           <Text style={[styles.sectionListTitle, { color: colors.text }]}>
-            {HomeSections[3].title}
+            {HomeSections[2].title}
           </Text>
           <ScrollView
             horizontal
@@ -284,7 +277,7 @@ const Home = (props: Props) => {
             <FlatList
               scrollEnabled={false}
               centerContent
-              numColumns={Math.ceil(HomeSections[3].items.length / 2)}
+              numColumns={Math.ceil(HomeSections[2].items.length / 2)}
               //numColumns={2}
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
@@ -292,7 +285,7 @@ const Home = (props: Props) => {
               contentContainerStyle={{
                 alignSelf: "flex-start",
               }}
-              data={HomeSections[3].items as LongBoxType[]}
+              data={HomeSections[2].items as LongBoxType[]}
               renderItem={(item) => (
                 <LongBox key={item.index} longbox={item.item} />
               )}
@@ -302,13 +295,13 @@ const Home = (props: Props) => {
         </View>
       </View>
       <HorizontalList
-        title={HomeSections[4].title}
-        data={HomeSections[4].items as CardType[]}
+        title={HomeSections[3].title}
+        data={HomeSections[3].items as CardType[]}
         renderItem={(item) => <Card key={item.index} card={item.item} />}
       />
       <HorizontalList
         title="Combinam com seu perfil"
-        data={HomeSections[4].items as CardType[]}
+        data={HomeSections[3].items as CardType[]}
         renderItem={(item) => <Card key={item.index} card={item.item} />}
       />
     </ScrollViewContainer>

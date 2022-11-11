@@ -9,6 +9,7 @@ import { IconButton } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RouteProp, ParamListBase } from "@react-navigation/native";
 import UserMenuNavigation from "../userMenuNavigation/UserMenuNavigation";
+import MarketplaceNavigation from "../marketplaceNavigation/MarketPlaceNavigation";
 const Tab = createBottomTabNavigator();
 
 const screenOptionsIcon = (
@@ -18,7 +19,7 @@ const screenOptionsIcon = (
   let iconName: any;
 
   switch (route.name) {
-    case "Home":
+    case "Marketplace":
       iconName = "home";
       break;
     case "Carrinho":
@@ -41,7 +42,11 @@ export default function HomeNavigation() {
         tabBarIcon: ({ color }) => screenOptionsIcon(route, color),
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen
+        name="Marketplace"
+        options={{ headerShown: false }}
+        component={MarketplaceNavigation}
+      />
       <Tab.Screen name="Carrinho" component={Carrinho} />
       <Tab.Screen name="Sua Conta" component={UserMenuNavigation} />
     </Tab.Navigator>
