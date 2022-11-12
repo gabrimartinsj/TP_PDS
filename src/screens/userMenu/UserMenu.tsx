@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
-import ScreenContainer, { styles } from "../../components/ScreenContainer";
+import ScreenContainer from "../../components/ScreenContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
 import { Usuario } from "../../@types/entities/Usuario";
@@ -28,6 +28,7 @@ const UserMenu = (props: Props) => {
         id: 0,
         nome: "Renato Diniz de Souza",
         email: "renatodiniz@gmail.com",
+        image: "https://picsum.photos/200/300?random="
       })
     );
   }, []);
@@ -61,10 +62,10 @@ const UserMenu = (props: Props) => {
 
   return (
     <ScreenContainer>
-      <View style={sytles.userInfo}>
+      <View style={styles.userInfo}>
         <MAvatarImage
           imageSize={48}
-          imageUrl={"https://picsum.photos/200/300?random="}
+          imageUrl={user.image}
         />
 
         <View>
@@ -85,7 +86,7 @@ const UserMenu = (props: Props) => {
 
 export default UserMenu;
 
-const sytles = StyleSheet.create({
+const styles = StyleSheet.create({
   userInfo: {
     justifyContent: "center",
     alignItems: "center",
