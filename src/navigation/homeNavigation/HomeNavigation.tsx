@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, OpaqueColorValue } from "react-native";
 import Carrinho from "../../screens/carrinho/Carrinho";
-import Home from "../../screens/Home";
+import Home from "../../screens/home/Home";
 import UserMenu from "../../screens/userMenu/UserMenu";
-import HomeLoja from "../../screens/HomeLoja";
-import HomeLojaColecao from "../../screens/HomeLojaColecao";
+import HomeLoja from "../../screens/loja/HomeLoja";
+import HomeLojaColecao from "../../screens/colecao/HomeLojaColecao";
 import { IconButton } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RouteProp, ParamListBase } from "@react-navigation/native";

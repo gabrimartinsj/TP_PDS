@@ -1,19 +1,22 @@
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import ScreenContainer from "../components/ScreenContainer";
-import MSearchBar from "../components/MSearchBar";
-import MCarousel from "../components/MCarousel";
+import ScreenContainer from "../../components/ScreenContainer";
+import MSearchBar from "../../components/MSearchBar";
+import MCarousel from "../../components/MCarousel";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import Box, { BoxType } from "../components/atoms/Box";
-import LongBox, { LongBoxType } from "../components/atoms/LongBox";
-import Card, { CardType } from "../components/atoms/Card";
-import HorizontalList from "../components/compose/HorizontalList";
-import ScrollViewContainer from "../components/ScrollViewContainer";
+import Box, { BoxType } from "../../components/atoms/Box";
+import LongBox, { LongBoxType } from "../../components/atoms/LongBox";
+import Card, { CardType } from "../../components/atoms/Card";
+import HorizontalList from "../../components/compose/HorizontalList";
+import ScrollViewContainer from "../../components/ScrollViewContainer";
 import { useTheme } from "react-native-paper";
-import { CustomTheme } from "../styles/theme";
-import { MarketPlaceStackParamList } from "../navigation/marketplaceNavigation/MarketPlaceNavigation";
+import { CustomTheme } from "../../styles/theme";
+import { MarketPlaceStackParamList } from "../../navigation/marketplaceNavigation/MarketPlaceNavigation";
+import { Loja } from "../../@types/entities/Loja";
 
-type Props = {};
+type Props = {
+  lojas: Loja[];
+};
 
 type categoria = {
   icon: string;
@@ -25,7 +28,7 @@ export type Section = {
   items: BoxType[] | LongBoxType[] | CardType[];
 };
 
-const Home = (props: Props) => {
+const Home = ({ lojas }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigation = useNavigation<NavigationProp<MarketPlaceStackParamList>>();
@@ -96,7 +99,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -104,7 +110,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -112,7 +121,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -120,7 +132,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -128,7 +143,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -136,7 +154,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -144,7 +165,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -152,7 +176,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Mundo Moda",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -160,7 +187,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
         {
           img:
@@ -168,7 +198,10 @@ const Home = (props: Props) => {
             (Math.random() * (100 - 1) + 1).toString(),
           title: "Auto Shop",
           price: "Explorar",
-          action: () => navigation.navigate("Loja"),
+          action: () =>
+            navigation.navigate("Loja", {
+              id: 0,
+            }),
         },
       ],
     },

@@ -35,6 +35,18 @@ export const serverConfig: ServerConfigType = {
         urlService: (id: number | string) => `/loja/${id}`,
       },
     },
+    colecao: {
+      getColecao: {
+        method: "get",
+        urlService: (id: number | string) => `/colecao/${id}`,
+      },
+    },
+    produto: {
+      getProduto: {
+        method: "get",
+        urlService: (id: number | string) => `/produto/${id}`,
+      },
+    },
   },
   proxy: "",
   desenv: {

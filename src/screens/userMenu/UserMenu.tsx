@@ -4,7 +4,10 @@ import ScreenContainer from "../../components/ScreenContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
 import { Usuario } from "../../@types/entities/Usuario";
-import { login } from "../../features/user/userActions/userActions";
+import {
+  getInformacaoPessoalStart,
+  login,
+} from "../../features/user/userActions/userActions";
 import MenuItemList, { MenuItemListType } from "../../components/MenuItemList";
 import MAvatarImage from "../../components/MAvatarImage";
 import theme, { CustomTheme } from "../../styles/theme";
@@ -17,9 +20,13 @@ type Props = {};
 const UserMenu = (props: Props) => {
   const { colors } = useTheme() as CustomTheme;
 
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user) as Usuario;
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getInformacaoPessoalStart(0));
+  }, []);
+
   const navigation = useNavigation<NavigationProp<UserMenuStackParamList>>();
 
   useEffect(() => {
@@ -28,7 +35,7 @@ const UserMenu = (props: Props) => {
         id: 0,
         nome: "Renato Diniz de Souza",
         email: "renatodiniz@gmail.com",
-        image: "https://picsum.photos/200/300?random="
+        image: "https://picsum.photos/200/300?random=",
       })
     );
   }, []);
@@ -63,10 +70,7 @@ const UserMenu = (props: Props) => {
   return (
     <ScreenContainer>
       <View style={styles.userInfo}>
-        <MAvatarImage
-          imageSize={48}
-          imageUrl={user.image}
-        />
+        <MAvatarImage imageSize={48} imageUrl={user.image} />
 
         <View>
           <Text style={{ color: colors.primary, fontSize: 28, paddingTop: 8 }}>

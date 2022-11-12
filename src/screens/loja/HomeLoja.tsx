@@ -1,10 +1,10 @@
 import { FlatList } from "react-native-gesture-handler";
-import ScrollViewContainer from "../components/ScrollViewContainer";
-import LongBox, { LongBoxType } from "../components/atoms/LongBox";
-import Card, { CardType } from "../components/atoms/Card";
-import HorizontalList from "../components/compose/HorizontalList";
+import ScrollViewContainer from "../../components/ScrollViewContainer";
+import LongBox, { LongBoxType } from "../../components/atoms/LongBox";
+import Card, { CardType } from "../../components/atoms/Card";
+import HorizontalList from "../../components/compose/HorizontalList";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { MarketPlaceStackParamList } from "../navigation/marketplaceNavigation/MarketPlaceNavigation";
+import { MarketPlaceStackParamList } from "../../navigation/marketplaceNavigation/MarketPlaceNavigation";
 
 type Colecao = {
   nome: string;
@@ -30,19 +30,29 @@ type Loja = {
   sections: ProductSection[];
 };
 
-export default function HomeLoja() {
+export type Props = {
+  loja: Loja;
+};
+
+export default function HomeLoja({ loja }: Props) {
   const navigation = useNavigation<NavigationProp<MarketPlaceStackParamList>>();
 
   const colecoes: Colecao[] = [
     {
       nome: "Coleção Masculina",
       image: "https://picsum.photos/200/330?random=",
-      action: () => navigation.navigate("Colecao"),
+      action: () =>
+        navigation.navigate("Colecao", {
+          id: 0,
+        }),
     },
     {
       nome: "Coleção Feminina",
       image: "https://picsum.photos/220/330?random=",
-      action: () => navigation.navigate("Colecao"),
+      action: () =>
+        navigation.navigate("Colecao", {
+          id: 0,
+        }),
     },
   ];
 
