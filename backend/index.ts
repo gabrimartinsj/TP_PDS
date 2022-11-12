@@ -5,7 +5,7 @@ const app = express();
 
 const port = 3003;
 
-const getUsers = app.get("/", async (request, response) => {
+app.get("/", async (request, response) => {
   const users = await pool.query("select * from USUARIO");
 
   console.log("users : ", users);
