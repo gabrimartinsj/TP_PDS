@@ -1,17 +1,12 @@
 import express from "express";
 import pool from "./bd";
+import marketplaceRouter from "./src/routes/marketplaceRoutes";
 
 const app = express();
 
 const port = 3003;
 
-app.get("/", async (request, response) => {
-  const users = await pool.query("select * from USUARIO");
-
-  console.log("users : ", users);
-
-  response.json({ info: "Node.js, Express, and Postgres API" });
-});
+app.use("/api/v1/marketplace", marketplaceRouter);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
