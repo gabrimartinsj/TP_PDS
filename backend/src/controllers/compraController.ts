@@ -22,7 +22,7 @@ class CompraController {
   getCompras = catchAsync(async (req: Request, res: Response, _next) => {
     const compras = await this.compraService.getCompras(parseInt(req.params.id));
 
-    return sendResponse(res, 200, true);
+    return sendResponse(res, 200, compras);
   });
 }
 
