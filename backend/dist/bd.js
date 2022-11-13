@@ -4,8 +4,8 @@ const pg_1 = require("pg");
 const pool = new pg_1.Pool({
     user: "postgres",
     host: "localhost",
-    database: "marketplace",
-    password: "afafc7bb",
+    database: "DB_TP_PDS",
+    password: "Gigiofera4$",
     port: 5432,
 });
 exports.default = pool;
