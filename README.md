@@ -101,3 +101,33 @@ O sistema será mais do que apenas uma plataforma para criação de uma loja vir
 - Projeto Arquitetural
 - Tarefas Técnicas
 - Desenvolvimento 
+
+
+### Documentação da Arquitetura
+
+#### Por que o sistema está usando uma arquitetura hexagonal?
+Utilizamos uma arquitetura hxagonal pelos seguintes motivos:
+  - Separar código de domínio de tecnologia;
+  - Facilitação uma eventual troca de tecnologia;
+  - Facilitação na realização de testes, uma vez que os adaptadores possam ser mockados;
+  - Redução do acoplamento do código;
+
+#### Quais são as portas e adaptadores? Qual o objetivo deles?
+  - CategoriaController -> ICategoriaController
+  - ClienteController -> IClienteController
+  - ColecaoController -> IColecaoController
+  - CompraController -> ICompraController
+  - LojaController -> ILojaController
+  - MaketplaceController -> IMaketplaceController
+  - ProdutoController -> IProdutoController
+  - SegmentoController -> ISegmentoController
+  - VendedorController -> IVendedorController
+  - CategoriaRepository -> ICategoriaRepository
+  - ClienteRepository -> IClienteRepository
+  - ColecaoRepository -> IColecaoRepository
+  - CompraRepository -> ICompraRepository
+  - LojaRepository -> ILojaRepository
+  - MarketplaceRepository -> IMarketplaceRepository
+  - ProdutoRepository -> IProdutoRepository
+  - SegmentoRepository -> ISegmentoRepository
+  - VendedorRepository -> IVendedorRepository
