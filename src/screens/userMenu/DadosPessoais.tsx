@@ -34,14 +34,17 @@ const DadosPessoais = (props: Props) => {
 
   const components = [
     <MInput
+      key={"EMAIL_INPUT"}
       inputName={"Email: "}
       initializedValue={user.dadosPessoais.email}
       inputProps={{keyboardType: "email-address"}}/>,
     <MInput
+      key={"CPF_INPUT"}
       inputName={"CPF: "}
       initializedValue={user.dadosPessoais.cpf}
       inputProps={{keyboardType: "numeric-pad"}}/>,
     <MInput
+    key={"TELEFONE_INPUT"}
       inputName={"Telefone: "}
       initializedValue={user.dadosPessoais.telefone}
       inputProps={{keyboardType: "numeric-pad"}}/>

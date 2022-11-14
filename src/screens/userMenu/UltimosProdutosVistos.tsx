@@ -54,18 +54,21 @@ const UltimosProdutosVistos = (props: Props) => {
     },
   ];
 
-  const components = produtos.map((value) => {
-    return (<Card card={{
-      img: value.image,
-      title: value.nome,
-      price: "R$" + value.preco.toFixed(2) + " " + value.desconto.toString() + "% OFF"
-    }}/>);
+  const components = produtos.map((value, idx) => {
+    return (<Card 
+      card={{
+        img: value.image,
+        title: value.nome,
+        price: "R$" + value.preco.toFixed(2) + " " + value.desconto.toString() + "% OFF"
+      }}
+      key={"PROD_VISTO"+idx}
+    />);
   });
   
   return (<ScreenBase
     title="Últimos produtos vistos:"
     components={
-      [<View style={styles.container}>
+      [<View key={"PRODUTOS_VISTOS"} style={styles.container}>
         {components}
       </View>]
     }
