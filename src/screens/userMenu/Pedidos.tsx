@@ -21,6 +21,7 @@ const Pedidos = (props: Props) => {
 
   const components = [
     <MPedido
+      key={"PEDIDO_0"}
       id={0}
       data={"11/09/2020"}
       status={"entregue"}
@@ -35,6 +36,7 @@ const Pedidos = (props: Props) => {
         }
       ]}/>,
     <MPedido
+      key={"PEDIDO_1"}
       id={1}
       data={"15/09/2020"}
       status={"entregue"}

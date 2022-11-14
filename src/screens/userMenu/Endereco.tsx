@@ -14,11 +14,11 @@ type EnderecoInfo = {
 
 type Props = {};
 
-function EnderecoRender(info: EnderecoInfo) {
+function EnderecoRender(info: EnderecoInfo, idx: number) {
   const { colors } = useTheme() as CustomTheme;
   
   return (
-    <View style={styles.enderecoContainer}>
+    <View style={styles.enderecoContainer} key={"END"+idx}>
       <Text style={{color: colors.primary}}>{info.rua}, {info.numero}</Text>
       <Text style={{color: colors.primary}}>{info.cidade}, {info.estado}</Text>
       <Text style={{color: colors.primary}}>CEP: {info.cep}</Text>
