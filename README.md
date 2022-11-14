@@ -105,8 +105,8 @@ O sistema será mais do que apenas uma plataforma para criação de uma loja vir
 
 ### Documentação da Arquitetura
 
-#### Por que o sistema está usando uma arquitetura hexagonal?
-Utilizamos uma arquitetura hxagonal pelos seguintes motivos:
+#### Por que o sistema está implementado em uma arquitetura hexagonal?
+Utilizamos uma arquitetura hexagonal pelos seguintes motivos:
   - Separar código de domínio de tecnologia;
   - Facilitação uma eventual troca de tecnologia;
   - Facilitação na realização de testes, uma vez que os adaptadores possam ser mockados;
