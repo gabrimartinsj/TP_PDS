@@ -60,7 +60,7 @@ export const serverConfig: ServerConfigType = {
       },
     },
   },
-  proxy: "https://82fe-2804-d45-b92c-db00-20e6-e74d-eb5b-d344.sa.ngrok.io",
+  proxy: "https://2ed5-2804-d45-b92c-db00-cc4a-7a74-eba0-e1c8.sa.ngrok.io",
   desenv: {
     host: "",
     url: "/api/v1",
