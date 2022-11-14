@@ -21,7 +21,7 @@ export class ProdutoService implements IProdutoService {
     return this.produtoRepository.getProdutos();
   }
 
-  async getProdutosDeColecao(): Promise<Produto[]> {
-    return this.produtoRepository.getProdutos();
+  async getProdutosDeColecao(id: number): Promise<Produto[]> {
+    return this.produtoRepository.getProdutosDeColecao(id);
   }
 }
