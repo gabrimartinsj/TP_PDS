@@ -11,6 +11,6 @@ export const getLojasSuccess = (lojas: Loja[]) => ({
 });
 
 export const getLojasFailure = (error: string) => ({
-  type: MarketplaceActionTypes.GET_LOJAS_START,
+  type: MarketplaceActionTypes.GET_LOJAS_FAILURE,
   payload: error,
 });

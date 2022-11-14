@@ -13,9 +13,11 @@ import { useTheme } from "react-native-paper";
 import { CustomTheme } from "../../styles/theme";
 import { MarketPlaceStackParamList } from "../../navigation/marketplaceNavigation/MarketPlaceNavigation";
 import { Loja } from "../../@types/entities/Loja";
+import { Produto } from "../../@types/entities/Produto";
 
 type Props = {
-  lojas: Loja[];
+  lojas?: Loja[];
+  produtos?: Produto[];
 };
 
 type categoria = {
@@ -28,10 +30,36 @@ export type Section = {
   items: BoxType[] | LongBoxType[] | CardType[];
 };
 
-const Home = ({ lojas }: Props) => {
+const Home = ({ lojas, produtos }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigation = useNavigation<NavigationProp<MarketPlaceStackParamList>>();
+  const lojasSection: Section["items"] = lojas
+    ? lojas.map((loja) => ({
+        title: loja.NOME_LOJA,
+        img:
+          "https://picsum.photos/200/300?random=" +
+          (Math.random() * (100 - 1) + 1).toString(),
+        price: "Explorar",
+        action: () => navigation.navigate("Loja", { id: loja.ID_LOJA }),
+      }))
+    : [];
+
+  const produtosSection: Section["items"] = produtos
+    ? produtos.map(
+        (produto) =>
+          ({
+            icon: "photo",
+            img: produto.URL_PRODUTO.trim(),
+            title: produto.NOME_PRODUTO.trim(),
+            price: produto.PRECO,
+            action: () =>
+              navigation.navigate("Produto", {
+                id: produto.ID_PRODUTO,
+              }),
+          } as BoxType)
+      )
+    : [];
 
   const HomeSections: Section[] = [
     {
@@ -92,187 +120,191 @@ const Home = ({ lojas }: Props) => {
 
     {
       title: "Lojas",
-      items: [
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Mundo Moda",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Mundo Moda",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Mundo Moda",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Mundo Moda",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Auto Shop",
-          price: "Explorar",
-          action: () =>
-            navigation.navigate("Loja", {
-              id: 0,
-            }),
-        },
-      ],
+      items: true
+        ? lojasSection
+        : [
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Mundo Moda",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Mundo Moda",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Mundo Moda",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Mundo Moda",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Auto Shop",
+              price: "Explorar",
+              action: () =>
+                navigation.navigate("Loja", {
+                  id: 0,
+                }),
+            },
+          ],
     },
     {
       title: "Ofertas quentes",
-      items: [
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto A",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto B",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto A",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto B",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto A",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto B",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto A",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-        {
-          img:
-            "https://picsum.photos/200/300?random=" +
-            (Math.random() * (100 - 1) + 1).toString(),
-          title: "Produto B",
-          price: "R$ 3x de 39,90",
-          action: () => navigation.navigate("Produto"),
-        },
-      ],
+      items: true
+        ? produtosSection
+        : [
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto A",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto B",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto A",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto B",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto A",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto B",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto A",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+            {
+              img:
+                "https://picsum.photos/200/300?random=" +
+                (Math.random() * (100 - 1) + 1).toString(),
+              title: "Produto B",
+              price: "R$ 3x de 39,90",
+              action: () => navigation.navigate("Produto", { id: 0 }),
+            },
+          ],
     },
   ];
 

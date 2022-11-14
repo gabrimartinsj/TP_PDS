@@ -2,7 +2,11 @@ import { Loja } from "./Loja";
 import { Produto } from "./Produto";
 
 export type Colecao = {
-  nome: string;
-  produtos: Produto[];
-  loja: Loja;
+  ID_COLECAO: number;
+
+  ID_LOJA: number;
+
+  ID_PRODUTO: number;
+
+  NOME_COLECAO: string;
 };

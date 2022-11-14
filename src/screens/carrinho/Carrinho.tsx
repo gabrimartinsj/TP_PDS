@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Compra } from "../../@types/entities/Compra";
 import ScrollViewContainer from "../../components/ScrollViewContainer";
@@ -9,20 +9,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
 import {
   addItem,
+  limparCarrinho,
   removeItem,
 } from "../../features/carrinho/carrinhoActions/carrinhoActions";
 
 type Props = {};
-
+/*
 function toMoneyPattern(num: number): string {
   return "R$" + num.toFixed(2).replace(".", ",");
 }
-
+*/
 const Carrinho = (props: Props) => {
   const { carrinho } = useSelector((state: RootState) => state.carrinho);
 
   const dispatch = useDispatch();
-
+  console.log("CARRINHO : ", carrinho.itens);
   /* 
 
   MODELO PARA DISPARAR AÇÕES PRO GERENCIADOR DE ESTADOS
@@ -42,7 +43,7 @@ const Carrinho = (props: Props) => {
       const { carrinho } = useSelector((state: RootState) => state.carrinho);
 
   */
-
+  /*
   useEffect(() => {
     if (carrinho.itens.length != 0) return;
 
@@ -86,7 +87,7 @@ const Carrinho = (props: Props) => {
       );
     }
   }, []);
-
+  */
   function onIncrement(idx: number) {
     return function () {
       dispatch(addItem(carrinho.itens[idx]));
@@ -99,62 +100,76 @@ const Carrinho = (props: Props) => {
     };
   }
 
+  const finalizarCompra = () => {
+    Alert.alert(
+      "Recebemos sua compra",
+      "Vamos entrar em contato para mais informações",
+      [{ text: "OK", onPress: () => dispatch(limparCarrinho()) }]
+    );
+  };
+
   return (
     <ScrollViewContainer>
       <View>
-        {carrinho.itens.map((produto, idx) => {
-          return (
-            <MProduto
-              produto={{
-                imagem: produto.image,
-                nome: produto.nome,
-                preco: produto.preco,
-                desconto: produto.desconto,
-                quantidade: produto.quantidade,
-                onIncrement: onIncrement(idx),
-                onDecrement: onDecrement(idx),
-              }}
-              key={idx}
-            />
-          );
-        })}
+        {carrinho &&
+          carrinho.itens.map((produto, idx) => {
+            return (
+              <MProduto
+                produto={{
+                  imagem: produto.image,
+                  nome: produto.nome,
+                  preco: produto.preco,
+                  desconto: produto.desconto,
+                  quantidade: produto.quantidade,
+                  onIncrement: onIncrement(idx),
+                  onDecrement: onDecrement(idx),
+                }}
+                key={idx}
+              />
+            );
+          })}
       </View>
       <View style={styles.bottom}>
-        <MDescValue
-          description={"Total dos Produtos:"}
-          value={toMoneyPattern(carrinho.totalBruto)}
-          fontSize={16}
-          color={"gray"}
-        ></MDescValue>
-        <MDescValue
-          description={"Frete:"}
-          value={toMoneyPattern(carrinho.frete)}
-          fontSize={16}
-          color={"gray"}
-        ></MDescValue>
-        <MDescValue
-          description={"Serviços:"}
-          value={toMoneyPattern(carrinho.servicos)}
-          fontSize={16}
-          color={"gray"}
-        ></MDescValue>
-        <MDescValue
-          description={"Descontos:"}
-          value={"-" + toMoneyPattern(carrinho.desconto)}
-          fontSize={16}
-          color={"gray"}
-        ></MDescValue>
-        <MDescValue
-          description={"Valor Total:"}
-          value={toMoneyPattern(carrinho.total)}
-          fontSize={20}
-          color={"black"}
-        ></MDescValue>
+        {
+          <>
+            <MDescValue
+              description={"Total dos Produtos:"}
+              value={carrinho.totalBruto.toString()}
+              fontSize={16}
+              color={"gray"}
+            ></MDescValue>
+            <MDescValue
+              description={"Frete:"}
+              value={carrinho.frete.toString()}
+              fontSize={16}
+              color={"gray"}
+            ></MDescValue>
+            <MDescValue
+              description={"Serviços:"}
+              value={carrinho.servicos.toString()}
+              fontSize={16}
+              color={"gray"}
+            ></MDescValue>
+            <MDescValue
+              description={"Descontos:"}
+              value={"-" + carrinho.desconto.toString()}
+              fontSize={16}
+              color={"gray"}
+            ></MDescValue>
+            <MDescValue
+              description={"Valor Total:"}
+              value={carrinho.total.toString()}
+              fontSize={20}
+              color={"black"}
+            ></MDescValue>
+          </>
+        }
+
         <MCustomButton
           text={"Finalizar compra"}
           style={styles.finalizarCompraButton}
           textStyle={styles.finalizarCompraButtonText}
-          onPress={() => console.log("Compra Finalizada")}
+          onPress={() => finalizarCompra()}
         />
       </View>
     </ScrollViewContainer>

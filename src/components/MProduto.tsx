@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { CustomTheme } from "../styles/theme";
@@ -6,7 +5,6 @@ import { useTheme } from "react-native-paper";
 import MImage from "./MImage";
 import MCustomButton from "./MCustomButton";
 import MProdutoInfo from "./MProductInfo";
-
 
 type ProdutoView = {
   imagem: string;
@@ -23,9 +21,8 @@ type MProdutoProps = {
 };
 
 export default function MProduto(props: MProdutoProps) {
-
   const { colors } = useTheme() as CustomTheme;
-
+  console.log("PROPS : ", props);
   const [productQuantity, setProductQuantity] = useState(
     props.produto.quantidade
   );

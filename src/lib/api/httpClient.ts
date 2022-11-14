@@ -26,3 +26,7 @@ export type HttpResponse<T = any> = {
   statusCode: HttpStatusCode;
   body?: T;
 };
+
+export type BodyWrapper<T = any> = {
+  data: T;
+};

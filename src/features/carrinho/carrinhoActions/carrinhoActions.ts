@@ -10,3 +10,7 @@ export const removeItem = (id: number) => ({
   type: CarrinhoActionTypes.REMOVE_ITEM,
   payload: id,
 });
+
+export const limparCarrinho = () => ({
+  type: CarrinhoActionTypes.LIMPAR_CARRINHO,
+});

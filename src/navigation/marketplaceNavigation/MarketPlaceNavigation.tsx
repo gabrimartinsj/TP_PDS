@@ -9,10 +9,12 @@ import UltimosProdutosVistos from "../../screens/userMenu/UltimosProdutosVistos"
 import Endereco from "../../screens/userMenu/Endereco";
 import HomeLoja from "../../screens/loja/HomeLoja";
 import HomeLojaColecao from "../../screens/colecao/HomeLojaColecao";
-import TelaProduto from "../../screens/TelaProduto";
+import TelaProduto from "../../screens/produto/TelaProduto";
 import Home from "../../screens/home/Home";
 import HomeContainer from "../../screens/home/HomeContainer";
 import HomeLojaContainer from "../../screens/loja/HomeLojaContainer";
+import HomeLojaColecaoContainer from "../../screens/colecao/HomeLojaColecaoContainer";
+import ProdutoContainer from "../../screens/produto/ProdutoContainer";
 
 type Props = {};
 
@@ -24,7 +26,9 @@ export type MarketPlaceStackParamList = {
   Colecao: {
     id?: number;
   };
-  Produto: undefined;
+  Produto: {
+    id?: number;
+  };
 };
 
 const MarketplaceStack =
@@ -60,7 +64,7 @@ const MarketplaceNavigation = (props: Props) => {
 
       <MarketplaceStack.Screen
         name="Colecao"
-        component={HomeLojaColecao}
+        component={HomeLojaColecaoContainer}
         options={{ headerShown: true }}
       />
 

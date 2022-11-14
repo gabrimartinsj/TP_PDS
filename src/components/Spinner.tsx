@@ -8,7 +8,7 @@ import {
 import { ScreenContainer } from "react-native-screens";
 const Spinner = () => {
   return (
-    <ScreenContainer>
+    <>
       <SafeAreaView style={styles.container}>
         <Text>Loading...</Text>
 
@@ -18,7 +18,7 @@ const Spinner = () => {
           color="#0000ff"
         />
       </SafeAreaView>
-    </ScreenContainer>
+    </>
   );
 };
 

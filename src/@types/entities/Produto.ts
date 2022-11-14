@@ -1,10 +1,14 @@
 export type Produto = {
-  id: number;
-  nome: string;
-  imagem: string;
-  preco: string;
-  descricao: string;
-  desconto: string;
-  estoque: number;
-  categoria: string;
+  ID_PRODUTO: number;
+  ID_COLECAO: string;
+  ID_CATEGORIA: string;
+  DESCONTO: number;
+
+  PRECO: number;
+
+  NOME_PRODUTO: string;
+
+  DESCRICAO: string;
+
+  URL_PRODUTO: string;
 };

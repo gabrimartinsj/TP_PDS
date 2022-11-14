@@ -7,6 +7,8 @@ import userReducer from "../features/user/userRedux/userReducer";
 import marketplaceReducer from "../features/marketplace/marketplaceRedux/marketplaceReducer";
 import carrinhoReducer from "../features/carrinho/carrinhoRedux/carrinhoRedux";
 import lojaReducer from "../features/loja/lojaRedux/lojaReducer";
+import colecaoReducer from "../features/colecao/colecaoRedux/colecaoRedux";
+import produtoReducer from "../features/produto/produtoRedux/produtoRedux";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   marketplace: marketplaceReducer,
   carrinho: carrinhoReducer,
   loja: lojaReducer,
+  colecao: colecaoReducer,
+  produto: produtoReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

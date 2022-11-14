@@ -19,7 +19,7 @@ const carrinhoInitialState: carrinhoTypes = {
     desconto: 0,
     servicos: 0,
     frete: 0,
-    total: 0
+    total: 0,
   },
 };
 
@@ -31,18 +31,26 @@ type Totals = {
   total: number;
 };
 
-
 function calculateDiscountReduction(price: number, discount: number): number {
   return (price * Math.round(discount)) / 100;
 }
 
 function calculateTotal(itens: CartItem[]) {
-  return itens.reduce((previous, current) => previous + current.preco * current.quantidade, 0);
+  return itens.reduce(
+    (previous, current) => previous + current.preco * current.quantidade,
+    0
+  );
 }
 
 function calculateTotalDiscount(itens: CartItem[]) {
   return itens.reduce((previous, current) => {
-    return previous + calculateDiscountReduction(current.preco * current.quantidade, current.desconto)
+    return (
+      previous +
+      calculateDiscountReduction(
+        current.preco * current.quantidade,
+        current.desconto
+      )
+    );
   }, 0);
 }
 
@@ -62,7 +70,7 @@ function calculateTotals(itens: CartItem[]): Totals {
     frete: calculateFrete(),
     servicos: calculateServices(),
     desconto: totalDesconto,
-    total: totalBruto - totalDesconto
+    total: totalBruto - totalDesconto,
   };
 }
 
@@ -74,14 +82,15 @@ function assignTotalsToCart(cart: Cart, totals: Totals) {
   cart.totalBruto = totals.totalBruto;
 }
 
-
 const carrinhoReducer = (state = carrinhoInitialState, action: AnyAction) => {
   const { type, payload } = action;
 
   switch (type) {
     case CarrinhoActionTypes.ADD_ITEM: {
       let novoCarrinho: Cart = { ...state.carrinho };
-      const itemIndex = novoCarrinho.itens.findIndex((value) => value.id == payload.id);
+      const itemIndex = novoCarrinho.itens.findIndex(
+        (value) => value.id == payload.id
+      );
       if (itemIndex != -1) {
         novoCarrinho.itens[itemIndex].quantidade++;
       } else {
@@ -98,19 +107,28 @@ const carrinhoReducer = (state = carrinhoInitialState, action: AnyAction) => {
     }
     case CarrinhoActionTypes.REMOVE_ITEM: {
       let novoCarrinho: Cart = { ...state.carrinho };
-      const itemIndex = novoCarrinho.itens.findIndex((value) => value.id == payload);
-      if(itemIndex != -1 && novoCarrinho.itens[itemIndex].quantidade >= 1) {
+      const itemIndex = novoCarrinho.itens.findIndex(
+        (value) => value.id == payload
+      );
+      if (itemIndex != -1 && novoCarrinho.itens[itemIndex].quantidade >= 1) {
         novoCarrinho.itens[itemIndex].quantidade--;
         assignTotalsToCart(novoCarrinho, calculateTotals(novoCarrinho.itens));
       }
-    
+
       return {
         ...state,
         isFetching: false,
         error: null,
-        carrinho: novoCarrinho
+        carrinho: {
+          ...novoCarrinho,
+          itens: novoCarrinho.itens.filter(
+            (item: { quantidade: number }) => item.quantidade > 0
+          ),
+        },
       };
     }
+    case CarrinhoActionTypes.LIMPAR_CARRINHO:
+      return carrinhoInitialState;
     default:
       return state;
   }

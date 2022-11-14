@@ -12,7 +12,7 @@ export const serverConfig: ServerConfigType = {
     marketplace: {
       getLojasStart: {
         method: "get",
-        urlService: "/marketplace/lojas",
+        urlService: "/marketplace/getLojas",
       },
     },
     user: {
@@ -40,18 +40,30 @@ export const serverConfig: ServerConfigType = {
         method: "get",
         urlService: (id: number | string) => `/colecao/${id}`,
       },
+      getColecaoDeLojaStart: {
+        method: "get",
+        urlService: `/colecao/getColecaoDeLoja`,
+      },
+      getProdutosDeColecao: {
+        method: "get",
+        urlService: `/produto/getProdutosDeColecao`,
+      },
     },
     produto: {
       getProduto: {
         method: "get",
-        urlService: (id: number | string) => `/produto/${id}`,
+        urlService: `/produto/getProduto`,
+      },
+      getProdutos: {
+        method: "get",
+        urlService: `/produto/getProdutos`,
       },
     },
   },
-  proxy: "",
+  proxy: "https://82fe-2804-d45-b92c-db00-20e6-e74d-eb5b-d344.sa.ngrok.io",
   desenv: {
     host: "",
-    url: "localhost:8080",
+    url: "/api/v1",
   },
   production: {
     host: "",

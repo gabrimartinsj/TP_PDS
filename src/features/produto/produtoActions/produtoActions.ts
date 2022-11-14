@@ -15,3 +15,17 @@ export const getProdutoFailure = (error: string) => ({
   type: ProdutoActionTypes.GET_PRODUTO_FAILURE,
   payload: error,
 });
+
+export const getProdutosStart = () => ({
+  type: ProdutoActionTypes.GET_PRODUTOS_START,
+});
+
+export const getProdutosSuccess = (produtos: Produto[]) => ({
+  type: ProdutoActionTypes.GET_PRODUTOS_SUCCESS,
+  payload: produtos,
+});
+
+export const getProdutosFailure = (error: string) => ({
+  type: ProdutoActionTypes.GET_PRODUTOS_FAILURE,
+  payload: error,
+});

@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { Loja } from "../../../@types/entities/Loja";
 import { Api } from "../../../lib/api/api";
 import { serverConfig } from "../../../lib/api/config";
-import { HttpResponse } from "../../../lib/api/httpClient";
+import { BodyWrapper, HttpResponse } from "../../../lib/api/httpClient";
 import {
   getLojasFailure,
   getLojasSuccess,
@@ -16,9 +16,9 @@ function* getLojasAsync() {
       url: serverConfig.pathUseCases.marketplace.getLojasStart
         .urlService as string,
       method: serverConfig.pathUseCases.marketplace.getLojasStart.method,
-    })) as HttpResponse<Loja[]>;
-
-    yield put(getLojasSuccess(response.body!));
+    })) as HttpResponse<BodyWrapper<Loja[]>>;
+    console.log("LOJAS : ", response.body);
+    yield put(getLojasSuccess(response.body!.data));
     // yield put(putMessage("Login realizado com sucesso", "success"));
   } catch (error) {
     console.log((error as Error).message);

@@ -2,10 +2,11 @@ import ScrollViewContainer from "../../components/ScrollViewContainer";
 import Card, { CardType } from "../../components/atoms/Card";
 import { useTheme } from "react-native-paper";
 import { CustomTheme } from "../../styles/theme";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { MarketPlaceStackParamList } from "../../navigation/marketplaceNavigation/MarketPlaceNavigation";
-
+import { Produto } from "../../@types/entities/Produto";
+/*
 type Produto = {
   nome: string;
   preco: number;
@@ -13,71 +14,30 @@ type Produto = {
   image: string;
   action?: () => void;
 };
-
+*/
 type Colecao = {
   nome: string;
   produtos: Produto[];
 };
 
-export default function HomeLojaColecao() {
+export type Props = {
+  colecaoo?: Colecao;
+  produtos?: Produto[];
+};
+
+export default function HomeLojaColecao({ colecaoo, produtos }: Props) {
   const { colors } = useTheme() as CustomTheme;
   const navigation = useNavigation<NavigationProp<MarketPlaceStackParamList>>();
+  console.log("PRODUTOS : ", produtos);
 
-  const colecao = {
-    nome: "Coleção Masculina",
-    produtos: [
-      {
-        nome: "Allen Solly Regular fit cotton shirt",
-        preco: 40.25,
-        desconto: 15,
-        image: "https://picsum.photos/200/330?random=1",
-        action: () => navigation.navigate("Produto"),
-      },
-      {
-        nome: "Calvin Clein Regular fit slim fit shirt",
-        preco: 62.4,
-        desconto: 20,
-        image: "https://picsum.photos/200/330?random=2",
-        action: () => navigation.navigate("Produto"),
-      },
-      {
-        nome: "H&M Regular fit cotton shirt",
-        preco: 70.8,
-        desconto: 20,
-        image: "https://picsum.photos/200/330?random=3",
-        action: () => navigation.navigate("Produto"),
-      },
-      {
-        nome: "Calvin Clein Regular fit casual shirt",
-        preco: 75,
-        desconto: 25,
-        image: "https://picsum.photos/200/330?random=4",
-        action: () => navigation.navigate("Produto"),
-      },
-      {
-        nome: "Tommy Hilfiger slim fit semi formal shirt",
-        preco: 71.3,
-        desconto: 15,
-        image: "https://picsum.photos/200/330?random=5",
-        action: () => navigation.navigate("Produto"),
-      },
-      {
-        nome: "Arrow slim fit semi formal shirt",
-        preco: 53.9,
-        desconto: 10,
-        image: "https://picsum.photos/200/330?random=6",
-        action: () => navigation.navigate("Produto"),
-      },
-    ],
-  };
-
+  /*
   let rows: Produto[][] = [];
 
   for (let i = 0; i < colecao.produtos.length; i++) {
     if (i % 2 == 0) rows.push([colecao.produtos[i]]);
     else rows[rows.length - 1].push(colecao.produtos[i]);
   }
-
+  */
   return (
     <ScrollViewContainer>
       <Text
@@ -89,32 +49,49 @@ export default function HomeLojaColecao() {
           paddingTop: 10,
         }}
       >
-        {colecao.nome}
+        {"COLEÇÃO"}
       </Text>
       <View style={styles.mainContainer}>
-        {rows.map((value, idx) => {
-          return (
-            <View style={styles.row}>
-              {value.map((produto, idx) => {
-                return (
-                  <Card
-                    card={{
-                      img: produto.image,
-                      title: produto.nome,
-                      price:
-                        "R$" +
-                        produto.preco.toFixed(2) +
-                        " " +
-                        produto.desconto.toString() +
-                        "% OFF",
-                      action: produto.action,
-                    }}
-                  />
-                );
-              })}
+        <FlatList
+          data={produtos}
+          numColumns={2}
+          keyExtractor={(item) => item.ID_PRODUTO.toString()}
+          renderItem={({ item }) => (
+            <View>
+              <Card
+                card={{
+                  img: item.URL_PRODUTO && item.URL_PRODUTO.trim(),
+                  title: item.NOME_PRODUTO,
+                  price: item.PRECO ? item.PRECO.toString() : "",
+                  action: () =>
+                    navigation.navigate("Produto", {
+                      id: item.ID_PRODUTO,
+                    }),
+                }}
+              />
             </View>
-          );
-        })}
+          )}
+        />
+        {/*
+        produtos &&
+          produtos.map((produto, idx) => {
+            return (
+              <View style={styles.row}>
+                <Card
+                  card={{
+                    img: produto.URL_PRODUTO && produto.URL_PRODUTO.trim(),
+                    title: produto.NOME_PRODUTO,
+                    price: produto.PRECO ? produto.PRECO.toString() : "",
+                    action: () =>
+                      navigation.navigate("Produto", {
+                        id: produto.ID_PRODUTO,
+                      }),
+                  }}
+                />
+              </View>
+            );
+          })
+          */}
       </View>
     </ScrollViewContainer>
   );
@@ -122,7 +99,7 @@ export default function HomeLojaColecao() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flexDirection: "column",
+    flex: 1,
   },
   row: {
     flexDirection: "row",

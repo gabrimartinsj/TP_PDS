@@ -9,7 +9,7 @@ export class Api {
   defaultHeader: object;
 
   constructor() {
-    this.BASE_URL = serverConfig.desenv.url;
+    this.BASE_URL = serverConfig.proxy + serverConfig.desenv.url;
 
     this.defaultHeader = {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export class Api {
 
   async Fetch(data: HttpRequest): Promise<HttpResponse> {
     let axiosResponse: AxiosResponse;
-
+    console.log("DATA : ", data);
     let bodyForm = "";
 
     console.log(
@@ -29,7 +29,7 @@ export class Api {
 
     try {
       axiosResponse = await axios.request({
-        url: data.url,
+        url: this.BASE_URL + data.url,
         method: data.method,
         data: data.body,
         headers: data.headers ? data.headers : this.defaultHeader,
@@ -40,7 +40,7 @@ export class Api {
 
     return {
       statusCode: axiosResponse.status,
-      body: axiosResponse.body,
+      body: axiosResponse.data,
     };
   }
 }
