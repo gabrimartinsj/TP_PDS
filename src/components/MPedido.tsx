@@ -30,7 +30,7 @@ export default function MPedido(props: Props) {
       <View style={styles.productsContainer}>
         {props.produtos.map((value, idx) => {
           return (
-            <Text style={[styles.text, {color: colors.primary}]}>{value.nome}: {value.quantidade}</Text>
+            <Text key={"ITEM_PEDIDO" + idx} style={[styles.text, {color: colors.primary}]}>{value.nome}: {value.quantidade}</Text>
           );
         })}
       </View>

@@ -12,6 +12,7 @@ const vendedorRoutes_1 = __importDefault(require("./src/routes/vendedorRoutes"))
 const lojaRoutes_1 = __importDefault(require("./src/routes/lojaRoutes"));
 const categoriaRoutes_1 = __importDefault(require("./src/routes/categoriaRoutes"));
 const segmentoRoutes_1 = __importDefault(require("./src/routes/segmentoRoutes"));
+const compraRoutes_1 = __importDefault(require("./src/routes/compraRoutes"));
 const app = (0, express_1.default)();
 const port = 3003;
 app.use("/api/v1/marketplace", marketplaceRoutes_1.default);
@@ -22,6 +23,7 @@ app.use("/api/v1/vendedor", vendedorRoutes_1.default);
 app.use("/api/v1/loja", lojaRoutes_1.default);
 app.use("/api/v1/categoria", categoriaRoutes_1.default);
 app.use("/api/v1/segmento", segmentoRoutes_1.default);
+app.use("/api/v1/compra", compraRoutes_1.default);
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });
