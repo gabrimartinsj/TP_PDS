@@ -113,6 +113,85 @@ Utilizamos uma arquitetura hexagonal pelos seguintes motivos:
   - Redução do acoplamento do código;
 
 #### Quais são as portas e adaptadores? Qual o objetivo deles?
+ 
+De maneira geral, os controladores (controllers), são responsáveis por receber as requisições do frontend. Focados principalmente em prover ao frontend as entidades necessárias. Os repositórios (repositories) são responsáveis por obter essas entidades do banco de dados, uma vez que possuem os métodos de acesso ao banco de dados. Uma estratégia adotada foi a criação de um repositório e um controlador para cada entidade, uma vez que todas as requisições necessitam obter dados do banco de dados.
+
+Um exemplo de adaptadores e portas utilizados são os adaptadores relacionados à entidade de Categoria.
+
+Inicialmente, é criada uma rota para categoria
+
+```typescript
+const categoriaRouter: Router = express.Router();
+
+categoriaRouter.get("/getCategoria/:id", new categoriaController().getCategoria);
+```
+
+Após isso, é passado para o adaptador
+
+```typescript
+class CategoriaController {
+    categoriaService: ICategoriaService;
+
+  constructor() {
+    this.categoriaService = new CategoriaService();
+  }
+
+  getCategoria = catchAsync(async (req: Request, res: Response, _next) => {
+    const categoria = await this.categoriaService.getCategoria(parseInt(req.params.id));
+
+    return sendResponse(res, 200, categoria);
+  });
+}
+```
+
+Que chama na camada de domínio
+
+```typescript
+interface ICategoriaService {
+  getCategoria(id: number): Promise<Categoria>;
+}
+```
+
+```typescript
+export class CategoriaService implements ICategoriaService {
+  categoriaRepository: CategoriaRepository;
+
+  constructor() {
+    this.categoriaRepository = new CategoriaRepository();
+  }
+
+  async getCategoria(id: number): Promise<Categoria> {
+    return this.categoriaRepository.getCategoria(id);
+  }
+}
+```
+
+E a camada de domínio acaba por acessar o repositório
+
+```typescript
+interface ICategoriaRepository {
+  getCategoria(id: number): Promise<Categoria>;
+}
+```
+
+```typescript
+class CategoriaRepository implements ICategoriaRepository {
+  pool: Pool;
+
+  constructor() {
+    this.pool = pool;
+  }
+
+  async getCategoria(id: number) {
+    const categoria: Categoria = (await pool.query(`select * from public2."CATEGORIA" where "ID_CATEGORIA" = $1`, [id])).rows as unknown as Categoria;
+
+    return categoria;
+  }
+}
+```
+
+No caso as portas e adaptadores implementados são os seguintes:
+
   - CategoriaController -> ICategoriaController
   - ClienteController -> IClienteController
   - ColecaoController -> IColecaoController
@@ -131,3 +210,4 @@ Utilizamos uma arquitetura hexagonal pelos seguintes motivos:
   - ProdutoRepository -> IProdutoRepository
   - SegmentoRepository -> ISegmentoRepository
   - VendedorRepository -> IVendedorRepository
+ 
